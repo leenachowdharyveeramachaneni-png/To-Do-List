@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h3 id="welcome"></h3>
+    <button id="logout">Logout</button>
+
+    <h2>✨ My Tasks</h2>
+
+    <div class="input-box">
+        <input type="text" id="taskInput" placeholder="Add a task...">
+        
+        <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button id="addBtn">+</button>
+    </div>
+
+    <p id="stats">Total: 0 | Completed: 0</p>
+
+    <button id="clearAll">Clear All</button>
+
+    <div class="filters">
+        <button onclick="filterTasks('all')">All</button>
+        <button onclick="filterTasks('done')">Completed</button>
+        <button onclick="filterTasks('pending')">Pending</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
