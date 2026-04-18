@@ -10,10 +10,11 @@ app.use(express.json());
 // 🔗 MySQL CONNECTION
 // ======================
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "roundhouse.proxy.rlwy.net",
   user: "root",
-  password: "root",   // 👈 change if needed
-  database: "studentDB"
+  password: "RSCTtsoVwnmFCZgUPtcFsnFUPPwIICBi",
+  database: "railway",
+  port: 12989
 });
 
 db.connect((err) => {
@@ -161,6 +162,6 @@ app.put("/updateTask/:id", (req, res) => {
 // ======================
 // 🚀 START SERVER
 // ======================
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("🚀 Server running on port 3000");
 });
