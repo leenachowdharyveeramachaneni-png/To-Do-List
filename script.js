@@ -16,6 +16,9 @@ const stats = document.getElementById("stats");
 const clearBtn = document.getElementById("clearAll");
 const logoutBtn = document.getElementById("logout");
 
+// 🌐 YOUR BACKEND URL
+const BASE_URL = "https://to-do-list-3-i3ma.onrender.com";
+
 // 👋 Welcome + Load tasks
 window.onload = () => {
     document.getElementById("welcome").textContent = "Welcome, " + currentUser;
@@ -58,8 +61,8 @@ function render() {
         text.textContent = task.task;
 
         if (task.done == 1) {
-    text.classList.add("done");
-}
+            text.classList.add("done");
+        }
 
         // ✏️ EDIT
         const edit = document.createElement("button");
@@ -93,7 +96,7 @@ function render() {
 
 // 📥 LOAD TASKS FROM DB
 function loadTasks() {
-    fetch(`http://localhost:3000/getTasks/${currentUser}`)
+    fetch(`${BASE_URL}/getTasks/${currentUser}`)
         .then(res => res.json())
         .then(data => {
             tasks = data;
@@ -105,7 +108,7 @@ function loadTasks() {
 addBtn.onclick = () => {
     if (input.value.trim() === "") return;
 
-    fetch("http://localhost:3000/addTask", {
+    fetch(`${BASE_URL}/addTask`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -122,9 +125,9 @@ addBtn.onclick = () => {
     });
 };
 
-// 🔄 UPDATE TASK (edit + checkbox)
+// 🔄 UPDATE TASK
 function updateTask(id, task, done) {
-    fetch(`http://localhost:3000/updateTask/${id}`, {
+    fetch(`${BASE_URL}/updateTask/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -139,7 +142,7 @@ function updateTask(id, task, done) {
 
 // ❌ DELETE TASK
 function deleteTask(id) {
-    fetch(`http://localhost:3000/deleteTask/${id}`, {
+    fetch(`${BASE_URL}/deleteTask/${id}`, {
         method: "DELETE"
     })
     .then(() => loadTasks());
